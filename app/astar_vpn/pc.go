@@ -113,6 +113,7 @@ func (a *AStarVPNClient) Register() *AStarVPNClient {
 		log.Println("注册失败：", err)
 		return a
 	}
+	log.Println("读取注册响应：", string(r))
 	r, _ := io.ReadAll(resp.Body)
 	if 1 > bytes.Index(r, []byte("successful")) {
 		log.Println("注册失败：", string(r))

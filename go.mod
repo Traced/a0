@@ -1,4 +1,4 @@
-module github.com/Traced/a0
+module github.com/Traced/a1
 
 go 1.19
 

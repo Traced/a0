@@ -16,7 +16,7 @@ import (
 var (
 	mailURL     = "https://mail.td"
 	mailApiURL  = mailURL + "/api/api/v1/mailbox/"
-	mailSuffix  = [3]string{"@uuf.me", "@tdtda.com", "getover.de"}
+	mailSuffix  = [5]string{"nqmo.com","yzm.de","qabq.com","end.tw","uuf.me"}
 	mailHeaders = map[string]string{
 		"authority":        "mail.td",
 		"user-agent":       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
@@ -38,7 +38,7 @@ type MailBox struct {
 }
 
 func RandMailSuffix() string {
-	return mailSuffix[rand.Intn(2)]
+	return mailSuffix[rand.Intn(5)]
 }
 
 func FakerMailAddress(username string) string {
