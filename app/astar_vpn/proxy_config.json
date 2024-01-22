@@ -1,0 +1,112 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "tag": "http",
+            "port": 2021,
+            "listen": "127.0.0.1",
+            "protocol": "http",
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
+            },
+            "settings": {
+                "udp": false,
+                "allowTransparent": false
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "tag": "proxy",
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "fm0-1.noojat.com",
+                        "port": 12443,
+                        "users": [
+                            {
+                                "id": "3776e2fa-5c46-46a2-9236-e0352b63a3ab",
+                                "alterId": 0,
+                                "security": "auto",
+                                "encryption": "none",
+                                "flow": "xtls-rprx-direct"
+                            }
+                        ]
+                    }
+                ],
+                "servers": [
+                    {
+                        "address": "",
+                        "password": "",
+                        "port": 0
+                    }
+                ],
+                "Response": {
+                    "type": ""
+                }
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "XTLS",
+                "xtlsSettings": {
+                    "allowInsecure": false
+                }
+            },
+            "mux": {
+                "enabled": false,
+                "concurrency": -1
+            }
+        },
+        {
+            "tag": "direct",
+            "protocol": "freedom",
+            "settings": {
+                "Response": {
+                    "type": ""
+                }
+            }
+        },
+        {
+            "tag": "block",
+            "protocol": "blackhole",
+            "settings": {
+                "Response": {
+                    "type": "http"
+                }
+            }
+        }
+    ],
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "inboundTag": [
+                    "api"
+                ],
+                "outboundTag": "api"
+            },
+            {
+                "type": "field",
+                "outboundTag": "direct",
+                "domain": [
+                    "geosite:cn"
+                ]
+            },
+            {
+                "type": "field",
+                "outboundTag": "direct",
+                "ip": [
+                    "geoip:cn"
+                ]
+            }
+        ]
+    }
+}

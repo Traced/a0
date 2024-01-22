@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: cornsilk;
+}
+
+
+#app {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.app-title {
+    margin-top: 30px;
+    margin-bottom: 65px;
+}
+
+.real-shadow {
+    /*border: 1px solid rgb(180 147 37);*/
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px 0 #836441;
+}
+
+.app-block {
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.app-content {
+    margin-top: 30px;
+}
+
+.app-block-toolbar {
+    margin-bottom: 30px;
+}
+
+.app-footer {
+    margin-top: 36px;
+    text-align: right;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 10px;
+}
+
+.app-site-config {
+    display: flex;
+    display: -webkit-flex;
+    padding: 0 20px;
+}
+
+.app-site-config .app-site-config-item {
+    flex: 1;
+}
+
+.app-site-config .app-site-config-_item {
+    width: 10%;
+    display: inline-block;
+}
+
+
+@media (max-width: 760px) {
+    #app {
+        width: 90%;
+    }
+
+    .app-site-config .app-site-config-item {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .app-site-config, .app-site-config .app-site-config-item {
+        display: block;
+    }
+}
+
+
+@media screen and (min-width: 761px)  and (max-width: 1000px) {
+    #app {
+        width: 90%;
+    }
+
+    .app-site-config .app-site-config-item {
+        width: 80%;
+    }
+
+    .app-site-config .app-site-config-_item {
+        width: 5%;
+        display: inline-block;
+    }
+}
