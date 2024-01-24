@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/bxcodec/faker/v3"
-	"proxy/utils"
+	"github.com/Traced/a0/utils"
 )
 
 var (
