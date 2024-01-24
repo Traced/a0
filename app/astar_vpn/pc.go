@@ -20,6 +20,8 @@ import (
 
 	"github.com/Traced/a0/app/astar_vpn/protected/xray"
 	"github.com/Traced/a0/app/astar_vpn/utils"
+
+	. "github.com/Traced/a0/app/astar_vpn/utils/temp_mailbox"
 )
 
 var (
@@ -40,7 +42,7 @@ var (
 		"Accept-Language": "zh-CN",
 		"Content-Type":    "application/x-www-form-urlencoded",
 	}
-	mailbox         = NewMailBox()
+	mailbox         = temp_mailbox.NewMailBox()
 	activeLinkMatch = regexp.MustCompile("(http.+) ")
 	useProxy        bool
 )
@@ -74,7 +76,7 @@ func (a *AStarVPNClient) ActiveAccount(account string) *AStarVPNClient {
 	if account == "" {
 		account = a.Account
 	}
-	mailbox.NewMailBox(account).Forever(func(r MailBodyResponse) bool {
+	mailbox.NewMailBox(account).Forever(func(r temp_mailbox.MailBodyResponse) bool {
 		if !strings.Contains(r.From, "astarvpn") {
 			return true
 		}
@@ -92,7 +94,7 @@ func (a *AStarVPNClient) ActiveAccount(account string) *AStarVPNClient {
 }
 
 func (a *AStarVPNClient) RandomSetAccount() *AStarVPNClient {
-	a.Account = FakerMailAddress("")
+	a.Account = temp_mailbox.FakerMailAddress("")
 	return a
 }
 
